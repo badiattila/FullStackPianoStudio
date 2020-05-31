@@ -8,7 +8,7 @@ gunicorn==20.0.4
 html5lib~=0.999
 jmespath~=0.9.3
 olefile~=0.44
-Pillow==7.1.2
+Pillow~=5.4.1
 psycopg2==2.7.3.2
 python-dateutil~=2.6.1
 pytz==2020.1
