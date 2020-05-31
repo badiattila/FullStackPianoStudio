@@ -12,3 +12,6 @@ To get started, create some files, play with the terminal,
 or visit https://docs.aws.amazon.com/console/cloud9/ for our documentation.
 
 Happy coding!
+
+![Django CI](https://github.com/badiattila/FullStackPianoStudio/workflows/Django%20CI/badge.svg)
+[![Build Status](https://travis-ci.com/badiattila/FullStackPianoStudio.svg?branch=master)](https://travis-ci.com/badiattila/FullStackPianoStudio)
