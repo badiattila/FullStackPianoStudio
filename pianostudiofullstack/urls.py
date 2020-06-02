@@ -15,7 +15,17 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.contrib import admin
+from main_content.views import index, gallery, services, rent, contact, contact_send
+
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
+    url(r'^$', index, name='index'),
+    url(r'^services/', services, name='services'),
+    url(r'^rent/', rent, name='rent'),
+    url(r'^createadd/', index, name='createadd'),
+    url(r'^pianos_for_sale/', index, name='pianos_for_sale'),
+    url(r'^gallery/', gallery, name='gallery'),
+    url(r'^contact/', contact, name='contact'),
+    url(r'^contact_send/', contact_send, name='contact_send'),
 ]
