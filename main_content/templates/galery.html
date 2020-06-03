@@ -1,13 +1,10 @@
-{% extends 'base.html' %} {% block head %} {% endblock %} {% block content %}
-{% load static %}
-
-<!-- Contact Form  -->
+{% extends 'base.html' %} {% load static %} {% load mytags %} {% block content %}
 <div class="op" id="sample">
+    <div class="row op s12">
+        {% for element in 0|loadjson %}
+        <div class="col s3"><img class="materialboxed galery-pic" src="{{ element.media_url }}" alt="Piano Studio Instagram"></div>{% endfor %}
+    </div>
 </div>
-{% endblock %} {% block bottom %}
-<!-- Instagram helper js for this website -->
-<script src="{% static 'js/instagram-information.js' %}"></script>
-<script type="text/javascript">
-  $(window).on("load", fetchInstagramInformation());
-</script>
-{% endblock %}
+
+
+{% endblock %} {% block bottom %} {% endblock %}

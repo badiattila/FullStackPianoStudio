@@ -1,5 +1,7 @@
 from django.shortcuts import render, HttpResponse, redirect, get_object_or_404
 from django.core.mail import send_mail
+import urllib, json, os
+from urllib import request
 
 def index(request):
     return render(request, 'index.html')
