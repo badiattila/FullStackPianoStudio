@@ -2,6 +2,7 @@ from django.shortcuts import render, HttpResponse, redirect, get_object_or_404
 from django.core.mail import send_mail
 import urllib, json, os
 from urllib import request
+from .models import Pianos
 
 def index(request):
     return render(request, 'index.html')
@@ -31,3 +32,7 @@ def contact_send(request):
     except:
         return render(request, 'contact_error.html')    
     return render(request, 'contact.html')
+
+def pianos_for_sale(request):
+    pianos = Pianos.objects.all()
+    return render(request, "pianos_for_sale.html", {"pianos": pianos})

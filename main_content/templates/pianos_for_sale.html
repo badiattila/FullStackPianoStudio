@@ -1,32 +1,31 @@
 {% extends 'base.html' %} {% block content %}
+{% load static %}
+
 <div class="op" id="sale">
     <h2>Pianos for sale</h2>
     <p></p>
     <div class="row s12 op">
-        {%for i in range(0, len)%}
+        {% for piano in pianos %}
         <div class="col s12 m6 l3">
             <div class="card left">
                 <div class="card-image">
-                    <img class="materialboxed" src="{{url_for('file', file_name=pianos[i].file_name)}}" alt="{{pianos[i].brand}}">
+                    <img class="materialboxed" src="{% get_media_prefix %}{{ piano.image }}" alt="{{piano.brand}}">
                     <span class="card-title">
                     </span>
                 </div>
                 <div class="card-content">
-                    <p><strong>Brand:</strong> {{pianos[i].brand}}</p>
-                    <p><strong>Price:</strong> EUR {{pianos[i].price}}.-</p>
-                    <p><strong>Age:</strong> {{pianos[i].age}} y.</p>
-                    <p><strong>Description:</strong> {{pianos[i].description}}</p>
+                    <p><strong>Brand:</strong> {{piano.brand}}</p>
+                    <p><strong>Price:</strong> EUR {{piano.price}}.-</p>
+                    <p><strong>Age:</strong> {{piano.age}} y.</p>
+                    <p><strong>Description:</strong> {{piano.description}}</p>
                 </div>
                 <div class="inline_actions center">
-                    <a href="{{url_for('delete_piano', piano_id=pianos[i]._id)}}" class="waves-effect waves-light btn btn_small red ">Del</a>
-                    <a href="{{url_for('edit_piano', piano_id=pianos[i]._id)}}" class="waves-effect waves-light btn btn_mid ">Edit</a>
+                    <a href="#" class="waves-effect waves-light btn btn_small red ">Del</a>
+                    <a href="#" class="waves-effect waves-light btn btn_mid ">Edit</a>
                 </div>
             </div>
         </div>
-        {% if i+1 == 4 %}
-    </div>
-    <div class="row s12 op">
-        {% endif %} {% endfor %}
+        {% endfor %}
     </div>
 </div>
 {% endblock %}
