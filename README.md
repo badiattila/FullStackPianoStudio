@@ -16,3 +16,5 @@ Happy coding!
 ![Django CI](https://github.com/badiattila/FullStackPianoStudio/workflows/Django%20CI/badge.svg)
 [![Build Status](https://travis-ci.com/badiattila/FullStackPianoStudio.svg?branch=master)](https://travis-ci.com/badiattila/FullStackPianoStudio)
 
+https://learndjango.com/tutorials/
+https://docs.djangoproject.com/en/3.0/topics/auth/default/

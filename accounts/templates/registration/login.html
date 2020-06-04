@@ -1,0 +1,11 @@
+{% extends "base.html" %} {% load bootstrap_tags %} {% block content %}
+<div class="op" id="login">
+    <h3>Login</h3>
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %} {{ form | as_bootstrap }}
+        <button type="submit" class="btn btn-info">Login</button>
+    </form>
+    <p>Not a user yet? <a href="{% url 'signup' %}">Sign up</a></p>
+    <p>Forgot your password? <a href="{% url 'password_reset' %}">Password reset</a></p>
+</div>
+{% endblock %}
