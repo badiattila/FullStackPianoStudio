@@ -1,9 +1,9 @@
 {% extends "base.html" %} {% load bootstrap_tags %} {% block content %}
 <div class="op" id="login">
-    <h3>Sign up</h3>
+    <h3>Register</h3>
     <form method="POST" enctype="multipart/form-data">
         {% csrf_token %} {{ form | as_bootstrap }}
-        <button type="submit" class="btn btn-info">Sign up</button>
+        <button type="submit" class="btn btn-info">Register</button>
     </form>
 </div>
 {% endblock %}
