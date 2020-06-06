@@ -16,13 +16,12 @@ Including another URLconf
 from django.conf.urls import url, include
 from django.contrib import admin
 from main_content.views import index, gallery, services, rent, contact, contact_send, pianos_for_sale, create_or_edit_piano_for_sale, delete_piano_for_sale
-from django.urls import path 
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    path('accounts/', include('django.contrib.auth.urls')), 
-    path('accounts/', include('accounts.urls')),
-    path('pianorental/', include('pianorental.urls')),     
+    url(r'accounts/', include('django.contrib.auth.urls')), 
+    url(r'accounts/', include('accounts.urls')),
+    url(r'pianorental/', include('pianorental.urls')),     
     url(r'^$', index, name='index'),
     url(r'^services/', services, name='services'),
     url(r'^rent/', rent, name='rent'),
