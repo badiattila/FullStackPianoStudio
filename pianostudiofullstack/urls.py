@@ -21,7 +21,8 @@ from django.urls import path
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     path('accounts/', include('django.contrib.auth.urls')), 
-    path('accounts/', include('accounts.urls')),     
+    path('accounts/', include('accounts.urls')),
+    path('pianorental/', include('pianorental.urls')),     
     url(r'^$', index, name='index'),
     url(r'^services/', services, name='services'),
     url(r'^rent/', rent, name='rent'),

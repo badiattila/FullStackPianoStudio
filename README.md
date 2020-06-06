@@ -18,3 +18,4 @@ Happy coding!
 
 https://learndjango.com/tutorials/
 https://docs.djangoproject.com/en/3.0/topics/auth/default/
+https://developer.mozilla.org/en-US/docs/Learn/Server-side/Django/Authentication

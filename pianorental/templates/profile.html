@@ -1,0 +1,44 @@
+{% extends "base.html" %} {% load bootstrap_tags %} {% block content %} {% load static %}
+<div class="op" id="profile">
+    <h3>Welcome {{ user.first_name }} {{ user.last_name }}</h3>
+    <div class="row">
+        <div class="col s6">
+            <div class="card">
+                <div class="card-content">
+                    <ul>
+                        <li>Your username is {{ user.username }} </li>
+                        <li>Your reistered email is {{ user.email }}</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        {% if piano %}
+        <div class="col s6">
+            <div class="card">
+                <div class="card-image">
+                    <img class="materialboxed" src="{% get_media_prefix %}{{ piano.image }}" alt="{{piano.brand}}">
+                    <span class="card-title">
+                    </span>
+                </div>
+                <div class="card-content">
+                    <p>Your piano is a {{ piano.brand }}</p>
+                    <p><strong>Price:</strong> EUR {{piano.price}}.- /month</p>
+                    <p><strong>Age:</strong> {{piano.age}} y.</p>
+                    <p><strong>Description:</strong> {{piano.description}}</p>
+                    <p><strong>Rent since:</strong> {{piano.rented_since}}</p>
+                </div>
+            </div>
+        </div>
+        {% else %}
+        <div class="col s6">
+            <div class="card">
+                <div class="card-content">
+                    <p>You dont have a piano rented yet!</p>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+</div>
+
+{% endblock %}

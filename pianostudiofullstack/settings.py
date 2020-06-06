@@ -42,6 +42,7 @@ ALLOWED_HOSTS = [os.environ.get('AWS_C9_HOSTNAME'),
 INSTALLED_APPS = [
     'accounts',
     'main_content',
+    'pianorental',
     'storages',
     'django_forms_bootstrap',
     'django.contrib.admin',
@@ -179,5 +180,5 @@ EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER')
 EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD')
 EMAIL_SUBJECT_PREFIX = os.getenv('EMAIL_SUBJECT_PREFIX')
 
-LOGIN_REDIRECT_URL = '/'
+LOGIN_REDIRECT_URL = 'profile'
 LOGOUT_REDIRECT_URL = '/'
