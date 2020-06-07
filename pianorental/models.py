@@ -9,7 +9,7 @@ class PianosForRent(models.Model):
     description = models.TextField()
     image = models.ImageField(upload_to='images')
 
-# Declaring loan status characters to be used in status field
+    # Declaring loan status characters to be used in status field
     LOAN_STATUS = (
         ('m', 'Maintenance'),
         ('o', 'On loan'),
@@ -36,3 +36,18 @@ class PianosForRent(models.Model):
     
     def __str__(self):
         return self.brand
+
+class Payment(models.Model):
+    payment_amount = models.DecimalField(max_digits=5, decimal_places=0)
+    payment_date = models.DateField()
+    payment_by = models.ForeignKey(
+        User,
+        models.SET_NULL,
+        blank=True,
+        null=True,
+    )
+    class Meta:
+        ordering = ['payment_date']    
+    
+    def __str__(self):
+        return "Date of payment: "+ str(self.payment_date) +" in amount: EUR "+ str(self.payment_amount) +" .-"
