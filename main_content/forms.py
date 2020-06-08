@@ -5,4 +5,3 @@ class PianosPostForm(forms.ModelForm):
     class Meta:
         model = Pianos
         fields = ('brand', 'price', 'age', 'description', 'image')
-        

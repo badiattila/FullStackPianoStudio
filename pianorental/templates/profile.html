@@ -1,4 +1,12 @@
-{% extends "base.html" %} {% load bootstrap_tags %} {% block content %} {% load static %}
+{% extends "base.html" %} {% load bootstrap_tags %} {% load static %} {% block head %}
+<script type="text/javascript" src="https://js.stripe.com/v2/"></script>
+<script type="text/javascript">
+    //<![CDATA[
+    Stripe.publishableKey = '{{ publishable }}';
+    //]]>
+</script>
+<script type="text/javascript" src="{% static 'js/stripe.js' %}"></script>
+{% endblock %} {% block content %}
 <div class="op" id="profile">
     <h3>Welcome {{ user.first_name }} {{ user.last_name }}</h3>
     <div class="row">
@@ -19,10 +27,30 @@
                         <li>You haven't made a payment yet!</li>
                         {% endif %} {% if payment_due %}
                         <li>You have a payment due, please pay!</li>
-                        {% else %}
-                        <li>All your bills are settled!</li>
-                        {% endif %}
                     </ul>
+                    <form role="form" method="post" id="payment-form" action="{% url 'checkout' %}">
+                        <legend>Payment Details</legend>
+
+                        <div id="credit-card-errors" style="display: none;">
+                            <div id="alert-message block-message error" id="stripe-error-message"></div>
+                        </div>
+
+                        <div class="form-group col-md-6">
+                            {{ make_payment_form | as_bootstrap }}
+                        </div>
+
+                        {% csrf_token %}
+                        <div class="form-group col-md-12">
+                            <input class=" btn btn-primary" id="submit_payment_btn" name="commit" type="submit" value="Submit Payment">
+                        </div>
+                    </form>
+
+                    {% else %}
+                    <li>All your bills are settled!</li>
+                    </ul>
+                    {% endif %} {% for message in messages %}
+                    <p>{{ message }}</p>
+                    {% endfor %}
                 </div>
             </div>
         </div>
@@ -52,6 +80,7 @@
             </div>
         </div>
         {% endfor %}
+
     </div>
 </div>
 

@@ -17,14 +17,19 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
     <!-- Specific Css for this website -->
     <link rel="stylesheet" href="{% static 'css/style.css' %}" type="text/css" />
+    <!-- Jquery -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
 
+    {% block head %} {% endblock %}
     <title>Piano Studio Kft. - Services - </title>
     <link href="{% static 'pictures/favicon.ico' %}" rel="shortcut icon" type="image/x-icon" />
     <meta name="description" content="Piano rental, tuning and repair - Piano Studio Kft." />
     <meta name="keywords" content="Piano rental,piano tuning,piano repair,piano studio" />
     <meta name="copyright" content="Piano Studio Kft." />
     <meta name="author" content="Attila Badi/Piano Studio Kft." />
-    <meta name="email" content="info@pianostudio.hu" /> {% block head %} {% endblock %}
+    <meta name="email" content="info@pianostudio.hu" /> 
 
 
 </head>
@@ -80,10 +85,6 @@
         </footer>
     </div>
 
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
-    <!-- Compiled and minified JavaScript -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
-    <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>-->
 
     <script>
         $(document).ready(function() {
