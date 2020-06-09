@@ -14,6 +14,7 @@ stripe.api_key = settings.STRIPE_SECRET
 
 @login_required    
 def profile(request):
+    total_due = 0
     user = request.user
     payments = Payment.objects.all().filter(payment_by = user)
     number_of_payments_made = payments.count() if payments.count() else 0 
@@ -21,14 +22,19 @@ def profile(request):
     total_days_count = 0
     make_payment_form = MakePaymentForm()    
     payment_form = PaymentForm()
-
+    total_paid = 0
+    
     for piano in pianos:
-        # payments_count += (date.today().year - piano.rented_since.year) * 12 + date.today().month - piano.rented_since.month        
         diff = (date.today() - piano.rented_since)
         total_days_count =+ diff.days
-    payments_due_count = total_days_count / 30    
-    payment_due = True if number_of_payments_made < payments_due_count else False
-    return render(request, "profile.html", {"pianos": pianos,"payments": payments, "payment_due": payment_due, 'make_payment_form': make_payment_form, "publishable": os.getenv('STRIPE_PUBLISHABLE')}) 
+        total_due += (diff.days / 30 * int(piano.price))
+
+    for payment in payments:
+        total_paid += payment.payment_amount
+
+    outstanding = int(total_due) - int(total_paid)
+    payment_due = True if outstanding > 0 else False
+    return render(request, "profile.html", {"pianos": pianos,"payments": payments, "payment_due": payment_due, 'outstanding': outstanding,'total_due': total_due,'total_paid': total_paid, 'make_payment_form': make_payment_form, "publishable": os.getenv('STRIPE_PUBLISHABLE')}) 
 
 
 @login_required()

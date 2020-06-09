@@ -26,7 +26,9 @@
                         {% endfor %} {% else %}
                         <li>You haven't made a payment yet!</li>
                         {% endif %} {% if payment_due %}
-                        <li>You have a payment due, please pay!</li>
+                        <li>You have EUR {{ outstanding }} .- due on your account!</li>
+                        <li>You have paid EUR {{ total_paid }} .- on your account!</li>
+                        <li>You have accumulated EUR {{ total_due }} .- on your account!</li>
                     </ul>
                     <form role="form" method="post" id="payment-form" action="{% url 'checkout' %}">
                         <legend>Payment Details</legend>
