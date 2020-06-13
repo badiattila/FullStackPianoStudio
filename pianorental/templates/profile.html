@@ -1,4 +1,4 @@
-{% extends "base.html" %} {% load bootstrap_tags %} {% load static %} {% block head %}
+{% extends "base.html" %} {% load bootstrap_tags %} {% load mytags %} {% load static %} {% block head %}
 <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
 <script type="text/javascript">
     //<![CDATA[
@@ -17,46 +17,61 @@
                     <ul>
                         <li>Your username is {{ user.username }} </li>
                         <li>Your registered email is {{ user.email }}</li>
+                    </ul>
+                    <h4>Balance</h4>
+                    {% if pianos %}
+                        <p>Your total bill todate is EUR {{ total_due }} .- </p>
+                        <p>You have so far paid EUR {{ total_paid }} .- </p>
+                        {% if outstanding > 0 %}
+                            <p>The outstanding amount due is EUR {{ outstanding }} .- </p>
+                        {% else %}
+                            <p>You have covered all your bills!</p>
+                        {% endif %} 
                         {% if payments %}
-                    </ul>
-                    <h4>Your payments made</h4>
-                    <ul>
-                        {% for payment in payments %}
-                        <li> {{ payment }}</li>
-                        {% endfor %} {% else %}
-                        <li>You haven't made a payment yet!</li>
-                        {% endif %} {% if payment_due %}
-                        <li>You have EUR {{ outstanding }} .- due on your account!</li>
-                        <li>You have paid EUR {{ total_paid }} .- on your account!</li>
-                        <li>You have accumulated EUR {{ total_due }} .- on your account!</li>
-                    </ul>
-                    <form role="form" method="post" id="payment-form" action="{% url 'checkout' %}">
-                        <legend>Payment Details</legend>
+                            <h5>Your Payments on Record</h5>
+                            <ul>
+                            {% for payment in payments %}
+                                <li> {{ payment }}</li>
+                            {% endfor %} 
+                            </ul>
+                        {% else %}
+                            <p>You haven't made a payment yet!</p>
+                        {% endif %} 
 
-                        <div id="credit-card-errors" style="display: none;">
-                            <div id="alert-message block-message error" id="stripe-error-message"></div>
-                        </div>
-
-                        <div class="form-group col-md-6">
-                            {{ make_payment_form | as_bootstrap }}
-                        </div>
-
-                        {% csrf_token %}
-                        <div class="form-group col-md-12">
-                            <input class=" btn btn-primary" id="submit_payment_btn" name="commit" type="submit" value="Submit Payment">
-                        </div>
-                    </form>
-
+                        {% if payment_due %}
+                            <h5>Please make a payment</h5>
+                            <form role="form" method="post" id="payment-form" action="{% url 'checkout' %}">
+                                <legend>Payment Details</legend>
+        
+                                <div id="credit-card-errors" style="display: none;">
+                                    <div id="alert-message block-message error" id="stripe-error-message"></div>
+                                </div>
+        
+                                <div class="form-group col-md-6">
+                                    {{ make_payment_form | as_bootstrap }}
+                                </div>
+        
+                                {% csrf_token %}
+                                <div class="form-group col-md-12">
+                                    <input class=" btn btn-primary" id="submit_payment_btn" name="commit" type="submit" value="Submit Payment">
+                                </div>
+                            </form>
+                        {% else %}
+                            <p>All your bills are settled!</p>
+                        {% endif %} 
                     {% else %}
-                    <li>All your bills are settled!</li>
-                    </ul>
-                    {% endif %} {% for message in messages %}
+                        <p>You don't rent a piano yet!</p>
+                    {% endif %} 
+                    
+                    {% for message in messages %}
                     <p>{{ message }}</p>
                     {% endfor %}
                 </div>
             </div>
         </div>
+        <div class="col s6">
         {% for piano in pianos %}
+        {% cycle '<div class="row s12">' '' %}
         <div class="col s6">
             <div class="card">
                 <div class="card-image">
@@ -65,24 +80,25 @@
                     </span>
                 </div>
                 <div class="card-content">
-                    <p>Your piano is a {{ piano.brand }}</p>
+                    <p><strong>Brand:</strong> {{ piano.brand }}</p>
                     <p><strong>Price:</strong> EUR {{piano.price}}.- /month</p>
                     <p><strong>Age:</strong> {{piano.age}} y.</p>
                     <p><strong>Description:</strong> {{piano.description}}</p>
                     <p><strong>Rent since:</strong> {{piano.rented_since}}</p>
                 </div>
             </div>
-        </div>
+        </div>    
+        {% cycle '' '</div>' %}
         {% empty %}
-        <div class="col s6">
             <div class="card">
                 <div class="card-content">
-                    <p>You dont have a piano rented yet!</p>
+                    <p>To rent a piano, please <a href="{% url 'contact' %}">Contact us</a></p>
+                    <p> Have a look at our available pianos on the <a href="{% url 'rent' %}">Rent</a> page</p>
                 </div>
             </div>
-        </div>
         {% endfor %}
-
+        {% autoescape off %}{{ pianos|countpianos2divelement }}{% endautoescape %}
+        </div>
     </div>
 </div>
 

@@ -46,6 +46,12 @@ class Payment(models.Model):
         blank=True,
         null=True,
     )
+    payment_for = models.ForeignKey(
+        PianosForRent,
+        models.SET_NULL,
+        blank=True,
+        null=True,
+    )    
     class Meta:
         ordering = ['payment_date']    
     

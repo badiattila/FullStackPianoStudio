@@ -1,0 +1,50 @@
+{% extends 'base.html' %} {% block content %}
+{% load static %}
+
+<!-- Services -->
+<div class="op" id="rent">
+    <div>
+        <div class="background-img-container">
+            <img class="img-to-back" src="{% static 'pictures/black-and-white-blur-document-164821.jpg' %}" alt="Piano Studio" />
+            <h3>Rent a Piano</h3>
+            <img class="right-teaser" src="{% static 'pictures/petrof.jpg' %}" alt="Rent" />
+            <p>We offer a choice of upright and grand pianos for hire to suit your event or home study needs.</p>
+            <p>We cather for: Weddings, Parties, Recitals, Events, Concerts, Theaters, Rehearsals, Photo Shoots, Movie Shoots, Restaurants, Conservatories, Schools, Graduations, Opera plays, Ball Rooms, Family Functions, Festivals.</p>
+            <p>We are happy to discuss and meet your requirements.</p>
+            <ul>
+                <li>Guaranteed Pricing - Upright pianos for beginners from 9000.- Ft. a month. Concert pianos for events from 50000.- Ft a day.</li>
+                <li>Unlimited Exchanges - Looking for something different? Any time and as many times as you want!</li>
+                <li>Buy at Any Time - If you’d like to buy, let us know and we’ll put your first 3 months of rental toward the purchase of the piano you’re renting.</li>
+            </ul>
+        </div>
+        <div class="op">
+            <h3>Available Pianos Gallery</h3>
+            {% for piano in pianos %}
+            {% cycle '<div class="row s12">' '' '' ''%}
+            <div class="col s3">
+                <div class="card">
+                    <div class="card-image">
+                        <img class="materialboxed" src="{% get_media_prefix %}{{ piano.image }}" alt="{{piano.brand}}">
+                        <span class="card-title">
+                        </span>
+                    </div>
+                    <div class="card-content">
+                        <p><strong>Brand:</strong> {{ piano.brand }}</p>
+                        <p><strong>Price:</strong> EUR {{piano.price}}.- /month</p>
+                        <p><strong>Age:</strong> {{piano.age}} y.</p>
+                        <p><strong>Description:</strong> {{piano.description}}</p>
+                    </div>
+                </div>
+            </div>    
+            {% cycle '' '' '' '</div>' %}
+            {% empty %}
+                <div class="card">
+                    <div class="card-content">
+                        <p>Seems like we don't have any pianos left to rent, please <a href="{% url 'contact' %}">Contact us</a></p>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}

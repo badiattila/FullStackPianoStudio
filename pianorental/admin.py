@@ -8,4 +8,4 @@ class PianosForRent(admin.ModelAdmin):
     
 @admin.register(Payment) 
 class Payment(admin.ModelAdmin):
-    list_display = ('payment_amount', 'payment_date', 'payment_by')
+    list_display = ('payment_amount', 'payment_date', 'payment_by', 'payment_for')

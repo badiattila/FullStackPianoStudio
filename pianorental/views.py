@@ -6,11 +6,15 @@ from django.conf import settings
 from django.utils import timezone
 from datetime import date
 from .models import PianosForRent, Payment
-from .forms import MakePaymentForm, PaymentForm
+from .forms import MakePaymentForm
 import stripe, os
 
 stripe.api_key = settings.STRIPE_SECRET
 # Create your views here.
+
+def rent(request):
+    pianos = PianosForRent.objects.all().filter(status='a')
+    return render(request, 'rent.html', {"pianos": pianos})
 
 @login_required    
 def profile(request):
@@ -19,15 +23,12 @@ def profile(request):
     payments = Payment.objects.all().filter(payment_by = user)
     number_of_payments_made = payments.count() if payments.count() else 0 
     pianos = PianosForRent.objects.all().filter(at_user=user)
-    total_days_count = 0
     make_payment_form = MakePaymentForm()    
-    payment_form = PaymentForm()
     total_paid = 0
     
     for piano in pianos:
-        diff = (date.today() - piano.rented_since)
-        total_days_count =+ diff.days
-        total_due += (diff.days / 30 * int(piano.price))
+        diff = int(date.today().year - piano.rented_since.year) * 12 + (date.today().month - piano.rented_since.month)
+        total_due += (diff * int(piano.price))
 
     for payment in payments:
         total_paid += payment.payment_amount
@@ -35,7 +36,6 @@ def profile(request):
     outstanding = int(total_due) - int(total_paid)
     payment_due = True if outstanding > 0 else False
     return render(request, "profile.html", {"pianos": pianos,"payments": payments, "payment_due": payment_due, 'outstanding': outstanding,'total_due': total_due,'total_paid': total_paid, 'make_payment_form': make_payment_form, "publishable": os.getenv('STRIPE_PUBLISHABLE')}) 
-
 
 @login_required()
 def checkout(request):

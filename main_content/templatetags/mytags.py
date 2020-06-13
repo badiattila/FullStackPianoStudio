@@ -12,6 +12,22 @@ def loadjson(value):
     json_valuable = json_object["data"]
     return json_valuable
     
-@register.filter(is_safe=True)
-def myfilter(value):
-    return value
+@register.filter(name='countpianos4divelement')
+def countpianos4divelement(pianos):
+    count = 0
+    for piano in pianos:
+        count += 1
+    if (count % 4 == 0):
+        return ''
+    else:    
+        return '</div>'
+
+@register.filter(name='countpianos2divelement')
+def countpianos2divelement(pianos):
+    count = 0
+    for piano in pianos:
+        count += 1
+    if (count % 2 == 0):
+        return ''
+    else:    
+        return '</div>'

@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.conf.urls import url, include
 from django.contrib import admin
-from main_content.views import index, gallery, services, rent, contact, contact_send, pianos_for_sale, create_or_edit_piano_for_sale, delete_piano_for_sale
+from main_content.views import index, gallery, services, contact, contact_send, pianos_for_sale, create_or_edit_piano_for_sale, delete_piano_for_sale
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
@@ -24,7 +24,6 @@ urlpatterns = [
     url(r'pianorental/', include('pianorental.urls')),     
     url(r'^$', index, name='index'),
     url(r'^services/', services, name='services'),
-    url(r'^rent/', rent, name='rent'),
     url(r'^createadd/', index, name='createadd'),
     url(r'^pianos_for_sale/', pianos_for_sale, name='pianos_for_sale'),
     url(r'^gallery/', gallery, name='gallery'),
