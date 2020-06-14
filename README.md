@@ -65,53 +65,69 @@ This site uses the native features of Material Design, Django user management an
 The Instagram API integration will need to be updated to use short term keys instead of the expiring developer key it uses at the moment.
 
 ## Testing
+### Automation
 Both travis and Github CI will run the automated tests before a new version of the code is deployed. 
 Coverage is targeted to be above 90% and is also stored under htmlcov folder in HTML format.
+
 ![Django CI](https://github.com/badiattila/FullStackPianoStudio/workflows/Django%20CI/badge.svg)
 [![Build Status](https://travis-ci.com/badiattila/FullStackPianoStudio.svg?branch=master)](https://travis-ci.com/badiattila/FullStackPianoStudio)
 
-Manual testing:
+### Manual testing
 A three user + admin database is created in the Heeroku (hosted version) of the app to enable testing.
 The hosted version also has pianos for rent and sample pianos for sale uploaded.
 The hosted version of the app has pianos assigned to test users to test profile functionality.
-    - Username:TestUser1 Pass:TestPass1 Usecase: has profile but no piano rented and no payment made
-    - Username:TestUser2 Pass:TestPass2 Usecase: has profile and one piano rented and no payment made with outstanding balance
-    - Username:TestUser3 Pass:TestPass3 Usecase: has profile with multiple pianos rented and a large payment made that covers all costs 
-    - AdminUsername: AdminUser AdminPassword: AdminPass1 
+ - Usecase: has profile but no piano rented and no payment made
+   - Username:TestUser1 
+   - Pass:TestPass1 
+ - Usecase: has profile and one piano rented and no payment made with outstanding balance
+   - Username:TestUser2 
+   - Pass:TestPass2 
+ - Usecase: has profile with multiple pianos rented and a large payment made that covers all costs 
+   - Username:TestUser3 
+   - Pass:TestPass3 
+ - Admin user for the admin interface interactions
+   - AdminUsername: AdminUser 
+   - AdminPassword: AdminPass1 
 
-The renter user story achieved the intended outcome of introducing the service and the dynamic gallery plus the profile.
-The buyer user story is satisfied by having the section Pianos to Sell with dynamic gallery of pianos for sale.
-The seller user story is satisfied by having the option to upload pianos for sale on the admin interface.
-The customer for services user story has the services section with piano tuning and restoration.
-The contact form is sending out emails to attila.badi@gmail.com.
-The Instagram API makes the gallery dynamic by showing all uploaded media.
+#### Test Cases checked vs. Business Cases
+1. The renter user story achieved the intended outcome of introducing the service and the dynamic gallery plus the profile.
+2. The buyer user story is satisfied by having the section Pianos to Sell with dynamic gallery of pianos for sale.
+3. The seller user story is satisfied by having the option to upload pianos for sale on the admin interface.
+4. The customer for services user story has the services section with piano tuning and restoration.
+5. The contact form is sending out emails to attila.badi@gmail.com.
+6. The Instagram API makes the gallery dynamic by showing all uploaded media.
+7. Validation on all forms are as needed.
+8. Social media links are tested and work as intended to both facebook and instagram.
 
-Validation on all forms are as needed.
-Social media links are tested and work as intended to both facebook and instagram.
-
+#### Note
 This site was tested across multiple browsers (Chrome, Internet Explorer, FireFox) and on mobile devices (iPhone 6 and Huawei P10) to ensure compatibility and responsiveness. 
 
 ## Deployment
-The code of this site is hosted in github, automated tests are run in Travis and deployment to Heroku is also automated on every commit if tests pass. 
+### Automated
+The code of this site is hosted in [github](https://github.com/badiattila/FullStackPianoStudio), automated tests are run in Travis and deployment to Heroku is also automated on every commit if tests pass. 
 
-To run locally, you will need the following environment variables defined:
- - SECRET_KEY - valid Django secret key (use https://miniwebtool.com/django-secret-key-generator/ if you need one)
- - AWS_C9_HOSTNAME - a valid C9 hostname if you run the code in C9 (strongly suggested!)
- - AWS_ACCESS_KEY_ID - a valid AWS access key id
- - AWS_SECRET_ACCESS_KEY - a valid AWS access key
- - DATABASE_URL - a valid postgres database URL
- - STRIPE_PUBLISHABLE - use a valid stripe publishable key
- - STRIPE_SECRET - use a valid stripe secret key
- - EMAIL_HOST - valid SMTP email server hostname
- - EMAIL_PORT - suggest to use secure port example 465
- - EMAIL_USE_SSL - suggest to set it to True
- - EMAIL_HOST_USER - a valid username for the SMTP
- - EMAIL_HOST_PASSWORD - a valid SMTP host password 
- - EMAIL_SUBJECT_PREFIX - for example "[Piano Studio WEB] "
- - INSTAGRAM_DEV_TOKEN - a valid instagram dev token to pianostudio's instagram
-You will need the components in requirements.txt deployed (pip3 install -r requirements.txt )
-You will need the migrations to be run (python3 manage.py migrate)
-And to run the application you will have to run the starting command (in my case: python3 ~/environment/manage.py runserver $IP:$PORT)
+### Locally
+1. You will need the following environment variables defined:
+   - SECRET_KEY - valid Django secret key (use [miniwebtool](https://miniwebtool.com/django-secret-key-generator/) if you need one)
+   - AWS_C9_HOSTNAME - a valid C9 hostname if you run the code in C9 (strongly suggested!)
+   - AWS_ACCESS_KEY_ID - a valid AWS access key id
+   - AWS_SECRET_ACCESS_KEY - a valid AWS access key
+   - DATABASE_URL - a valid postgres database URL
+   - STRIPE_PUBLISHABLE - use a valid stripe publishable key
+   - STRIPE_SECRET - use a valid stripe secret key
+   - EMAIL_HOST - valid SMTP email server hostname
+   - EMAIL_PORT - suggest to use secure port example 465
+   - EMAIL_USE_SSL - suggest to set it to True
+   - EMAIL_HOST_USER - a valid username for the SMTP
+   - EMAIL_HOST_PASSWORD - a valid SMTP host password 
+   - EMAIL_SUBJECT_PREFIX - for example "[Piano Studio WEB] "
+   - INSTAGRAM_DEV_TOKEN - a valid instagram dev token to pianostudio's instagram
+2. You will need the components in requirements.txt deployed
+   - pip3 install -r requirements.txt
+3. You will need the migrations to be run
+   - python3 manage.py migrate
+4. And to run the application you will have to run the starting command
+   - in my case: python3 ~/environment/manage.py runserver $IP:$PORT
 
 ## Credits
 
@@ -119,18 +135,19 @@ And to run the application you will have to run the starting command (in my case
 All content in this site were written by me. 
 
 ### Media
-Background photos were taken from [Pexels](https://www.pexels.com/), a stock image library.
-Pictures used (pianos owned and for sale sections and introduction) are taken by the owners and workers of Piano Studio Kft. 
+ - Background photos were taken from [Pexels](https://www.pexels.com/), a stock image library.
+ - Pictures used (pianos owned and for sale sections and introduction) are taken by the owners and workers of Piano Studio Kft. 
 
 ### Acknowledgements
-Code Institute's course material is heavily used as both inspiration and code examples.
+[Code Institute](https://codeinstitute.net/)'s course material is heavily used as both inspiration and code examples.
 Color schemes are inspired by an article found https://www.websitebuilderexpert.com/designing-websites/how-to-choose-color-for-your-website/
 Instagram integration uses samlpe code from code institute and Instagrams own introductory how-to manuals.
 StackOverflow is used to figure out solutions in all cases I got stuck with anything.
 CSS Tutorial was at help whenever I needed a nicer interpretation https://www.w3schools.com/css/
 For the parts where I got stuck with django I used 
- - https://learndjango.com/tutorials/
- - https://docs.djangoproject.com/en/3.0/topics/auth/default/
- - https://developer.mozilla.org/en-US/docs/Learn/Server-side/Django/Authentication
+ - [learndjango.com](https://learndjango.com/tutorials/)
+ - [docs.djangoproject.com](https://docs.djangoproject.com/en/3.0/topics/auth/default/)
+ - [developer.mozilla.org](https://developer.mozilla.org/en-US/docs/Learn/Server-side/Django/Authentication)
+
 **This is for educational use and possibly will be the successor of the currently hosted www.pianostudio.hu in the future.** 
 
