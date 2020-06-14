@@ -1,5 +1,6 @@
 {% extends 'base.html' %} {% load static %} {% load mytags %} {% block content %}
 <div class="op" id="sample">
+    <h3>Gallery</h3>
     <div class="row op s12">
         {% for element in 0|loadjson %}
         <div class="col s3"><img class="materialboxed galery-pic" src="{{ element.media_url }}" alt="Piano Studio Instagram"></div>{% endfor %}
