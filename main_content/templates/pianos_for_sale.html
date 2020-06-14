@@ -1,10 +1,11 @@
-{% extends 'base.html' %} {% load static %} {% load mytags %} {% block content %} 
+{% extends 'base.html' %} {% load static %} {% load mytags %} {% block content %}
 
 <div class="op" id="sale">
     <h3>Pianos for sale</h3>
+    <div class="op">
 
-    {% if pianos %}
-        {% for piano in pianos %} {% cycle '<div class="row s12">' '' '' ''%}
+        {% if pianos %} {% for piano in pianos %} {% cycle '
+        <div class="row s12">' '' '' ''%}
             <div class="col s3">
                 <div class="card">
                     <div class="card-image">
@@ -20,15 +21,13 @@
                     </div>
                 </div>
             </div>
-        {% cycle '' '' '' '</div>' %} 
-        {% endfor %}
-        {% autoescape off %}{{ pianos|countpianos4divelement }}{% endautoescape %}
-    {% else %}
+            {% cycle '' '' '' '</div>' %} {% endfor %} {% autoescape off %}{{ pianos|countpianos4divelement }}{% endautoescape %} {% else %}
         <div class="card">
             <div class="card-content">
                 <p>Seems like we don't have any pianos left to rent, please <a href="{% url 'contact' %}">Contact us</a></p>
             </div>
         </div>
-    {% endif %}
+        {% endif %}
+    </div>
 </div>
 {% endblock %}
