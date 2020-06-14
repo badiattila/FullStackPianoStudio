@@ -1,5 +1,4 @@
-{% extends 'base.html' %} {% block content %}
-{% load static %}
+{% extends "base.html" %} {% load mytags %} {% load static %} {% block content %}
 
 <!-- Services -->
 <div class="op" id="rent">
@@ -18,7 +17,7 @@
             </ul>
         </div>
         <div class="op">
-            <h3>Available Pianos Gallery</h3>
+            <h4>Available Pianos Gallery</h4>
             {% for piano in pianos %}
             {% cycle '<div class="row s12">' '' '' ''%}
             <div class="col s3">
@@ -44,6 +43,7 @@
                     </div>
                 </div>
             {% endfor %}
+            {% autoescape off %}{{ pianos|countpianos4divelement }}{% endautoescape %}
         </div>
     </div>
 </div>
