@@ -19,10 +19,10 @@ class TestMainViews(TestCase):
         self.assertEqual(response.status_code, 200) 
         self.assertTemplateUsed(template_name='services.html')
         
-    def test_gallery(self):
-        response = self.client.get('/main_content/gallery/', follow=True)
-        self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(template_name='galery.html')
+    # def test_gallery(self):
+    #     response = self.client.get('/main_content/gallery/', follow=True)
+    #     self.assertEqual(response.status_code, 200)
+    #     self.assertTemplateUsed(template_name='galery.html')
 
     def test_pianos_for_sale(self):
         response = self.client.get('/main_content/pianos_for_sale/', follow=True)
