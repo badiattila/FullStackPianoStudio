@@ -15,21 +15,13 @@ Including another URLconf
 """
 from django.conf.urls import url, include
 from django.contrib import admin
-from main_content.views import index, gallery, services, contact, contact_send, pianos_for_sale, create_or_edit_piano_for_sale, delete_piano_for_sale
+from main_content.views import index
 
 urlpatterns = [
+    url(r'^$', index, name='index'),
     url(r'^admin/', admin.site.urls),
     url(r'accounts/', include('django.contrib.auth.urls')), 
     url(r'accounts/', include('accounts.urls')),
     url(r'pianorental/', include('pianorental.urls')),     
-    url(r'^$', index, name='index'),
-    url(r'^services/', services, name='services'),
-    url(r'^createadd/', index, name='createadd'),
-    url(r'^pianos_for_sale/', pianos_for_sale, name='pianos_for_sale'),
-    url(r'^gallery/', gallery, name='gallery'),
-    url(r'^contact/', contact, name='contact'),
-    url(r'^contact_send/', contact_send, name='contact_send'),
-    url(r'^new_piano_post/', create_or_edit_piano_for_sale, name='new_piano_post'),
-    url(r'^(?P<pk>\d+)/edit_piano/$', create_or_edit_piano_for_sale, name='create_or_edit_piano_for_sale'),
-    url(r'^(?P<pk>\d+)/delete_piano/$', delete_piano_for_sale, name='delete_piano_for_sale'),
+    url(r'main_content/', include('main_content.urls')),     
 ]
