@@ -28,7 +28,8 @@ jobs:
         pip install -r requirements.txt
     - name: Run Tests
       env:
-        STRIPE_SECRET: ${{ secrets.STRIPE_SECRET }}    
+        STRIPE_SECRET: ${{ secrets.STRIPE_SECRET }} 
+        INSTAGRAM_DEV_TOKEN: ${{ secrets.INSTAGRAM_DEV_TOKEN }}
       run: |
         export SECRET_KEY="whatever"
         python manage.py test
