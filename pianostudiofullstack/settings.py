@@ -34,7 +34,8 @@ DEBUG = True
 
 ALLOWED_HOSTS = [os.environ.get('AWS_C9_HOSTNAME'),
                  '127.0.0.1',
-                 'pianostudiofullstack.herokuapp.com']
+                 'pianostudiofullstack.herokuapp.com',
+                 'zongora-pianino.hu']
 
 
 # Application definition
